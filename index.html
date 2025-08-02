@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Couple Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="home">
+  <div class="overlay">
+    <h1 class="title">❄️ Couple Quiz 🔥</h1>
+    <div id="setup">
+      <div id="couples-list"></div>
+      <button onclick="addCouple()">➕ Ajouter un couple</button>
+      <br><br>
+      <button onclick="startGame()">🚀 Démarrer la manche</button>
+    </div>
+    <div id="game" class="hidden">
+      <p id="round-counter">Manche 1</p>
+      <p id="question-type" class="question-type"></p>
+      <p id="current-question" class="big-question">Question</p>
+      <p id="current-couple" class="big-couple">Couple : </p>
+      <button onclick="validateAnswer(true)">✅ Bonne réponse</button>
+      <button onclick="validateAnswer(false)">❌ Mauvaise réponse</button>
+    </div>
+    <div id="final" class="hidden">
+      <h2>🏁 Partie terminée !</h2>
+      <div id="final-scores" class="big-score"></div>
+      <br>
+      <button onclick="restartGame()">🔁 Rejouer</button>
+    </div>
+  </div>
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

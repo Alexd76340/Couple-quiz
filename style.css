@@ -1,0 +1,82 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+body.home {
+  background: url('home_background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.soft {
+  background: url('soft_background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.hot {
+  background: url('hot_background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+button {
+  margin: 10px;
+  padding: 14px 28px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ffffffdd;
+  color: black;
+}
+
+input {
+  padding: 10px;
+  margin: 5px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.big-question {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.big-couple {
+  font-size: 22px;
+}
+
+.question-type {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.big-score p {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.hidden {
+  display: none;
+}
