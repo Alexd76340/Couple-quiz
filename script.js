@@ -227,8 +227,12 @@ function endGame() {
 }
 
 // ✅ Fonction pour redémarrer le jeu
+document.getElementById('restart-button').addEventListener('click', function() {
+  restartGame();
+});
+
 function restartGame() {
-  // Réinitialiser toutes les variables
+  // Réinitialiser toutes les variables de jeu
   couples = [];
   scores = {};
   round = 1;
@@ -237,29 +241,29 @@ function restartGame() {
   currentCoupleIndex = 0;
   currentPhase = 'soft';
 
-  // Réinitialiser l'affichage des éléments du jeu
+  // Réinitialiser l'affichage des sections
   document.getElementById('final').classList.add('hidden');
   document.getElementById('setup').classList.remove('hidden');
   document.getElementById('game').classList.add('hidden');
-  
-  // Réinitialiser les champs des couples si nécessaire
+
+  // Réinitialiser les champs des couples dans le formulaire
   const inputs = document.querySelectorAll('#couples-list input');
   inputs.forEach(input => {
     input.value = '';  // Effacer les valeurs des champs
   });
 
-  // Réinitialiser l'interface utilisateur, comme les scores et le compteur de manches
+  // Réinitialiser l'affichage des informations de jeu
   document.getElementById('round-counter').innerText = "Manche " + round;
   document.getElementById('current-question').innerText = "";
   document.getElementById('current-couple').innerText = "";
   document.getElementById('question-type').innerText = "";
 
-  // Optionnel : Réinitialiser les éventuels effets visuels comme les confettis
+  // Réinitialiser la classe du corps (soft ou hot)
+  document.body.className = 'soft';
+
+  // Supprimer le canvas des confettis s'il existe
   const confettiCanvas = document.getElementById('confetti-canvas');
   if (confettiCanvas) {
     confettiCanvas.remove();
   }
-
-  // Réinitialiser la classe du corps (soft ou hot)
-  document.body.className = 'soft';
 }
