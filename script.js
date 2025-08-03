@@ -98,25 +98,6 @@ function endGame() {
 
   const scoreDiv = document.getElementById('final-scores');
   scoreDiv.innerHTML = "";
-
-  const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0];
-  const winnerName = winner[0];
-  const winnerScore = winner[1];
-
-  const message = document.createElement('h2');
-  message.innerText = `🏆 Bravo ${winnerName} ! Vous remportez cette partie avec ${winnerScore} point${winnerScore > 1 ? 's' : ''} !`;
-  scoreDiv.insertBefore(message, scoreDiv.firstChild);
-
-  const comment = document.createElement('p');
-  if (winnerScore >= 10) {
-    comment.innerText = "💖 Vous vous connaissez par cœur !";
-  } else if (winnerScore >= 6) {
-    comment.innerText = "😊 Encore un peu d'entraînement, mais beau duo !";
-  } else {
-    comment.innerText = "😅 Va falloir discuter ce soir !";
-  }
-  scoreDiv.appendChild(comment);
-
   for (const couple of couples) {
     const score = scores[couple];
     const p = document.createElement('p');
