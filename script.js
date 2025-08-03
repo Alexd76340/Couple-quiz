@@ -7,6 +7,12 @@ let currentCoupleIndex = 0;
 let currentPhase = 'soft';
 let totalRounds = 2;
 
+// ✅ Fonction manquante : randomiser les questions
+function getRandomQuestions(questionArray, count) {
+  const shuffled = [...questionArray].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
 function addCouple() {
   const container = document.getElementById('couples-list');
   const inputGroup = document.createElement('div');
@@ -18,11 +24,6 @@ function addCouple() {
 
   inputGroup.appendChild(input);
   container.appendChild(inputGroup);
-}
-
-function getRandomQuestions(questionArray, count) {
-  const shuffled = questionArray.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
 }
 
 function startGame() {
@@ -98,14 +99,79 @@ function endGame() {
 
   const scoreDiv = document.getElementById('final-scores');
   scoreDiv.innerHTML = "";
+
+  const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0];
+  const winnerName = winner[0];
+  const winnerScore = winner[1];
+
+  const message = document.createElement('h2');
+  message.innerText = `🏆 Bravo ${winnerName} ! Vous remportez cette partie avec ${winnerScore} point${winnerScore > 1 ? 's' : ''} !`;
+  scoreDiv.insertBefore(message, scoreDiv.firstChild);
+
+  const comment = document.createElement('p');
+  if (winnerScore >= 10) {
+    comment.innerText = "💖 Vous vous connaissez par cœur !";
+  } else if (winnerScore >= 6) {
+    comment.innerText = "😊 Encore un peu d'entraînement, mais beau duo !";
+  } else {
+    comment.innerText = "😅 Va falloir discuter ce soir !";
+  }
+  scoreDiv.appendChild(comment);
+
   for (const couple of couples) {
     const score = scores[couple];
     const p = document.createElement('p');
     p.innerText = `${couple} : ${score} pts`;
     scoreDiv.appendChild(p);
   }
+
+  // 🎊 Confettis visuels
+  const confettiCanvas = document.createElement('canvas');
+  confettiCanvas.id = 'confetti-canvas';
+  confettiCanvas.style.position = 'fixed';
+  confettiCanvas.style.top = '0';
+  confettiCanvas.style.left = '0';
+  confettiCanvas.style.width = '100%';
+  confettiCanvas.style.height = '100%';
+  confettiCanvas.style.zIndex = '1000';
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+  document.body.appendChild(confettiCanvas);
+
+  const context = confettiCanvas.getContext('2d');
+  const confettis = Array.from({ length: 150 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * -window.innerHeight,
+    r: Math.random() * 6 + 4,
+    d: Math.random() * 5 + 2,
+    color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+  }));
+
+  function drawConfetti() {
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    confettis.forEach(p => {
+      context.beginPath();
+      context.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      context.fillStyle = p.color;
+      context.fill();
+    });
+    moveConfetti();
+  }
+
+  function moveConfetti() {
+    confettis.forEach(p => {
+      p.y += p.d;
+      if (p.y > window.innerHeight) {
+        p.y = -10;
+        p.x = Math.random() * window.innerWidth;
+      }
+    });
+  }
+
+  setInterval(drawConfetti, 30);
 }
 
+// ✅ Recharge 100 % fiable du jeu
 function restartGame() {
-  location.reload();
+  window.location.href = window.location.href;
 }
