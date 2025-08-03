@@ -42,9 +42,5 @@ const hotQuestions = [
   "Si ton partenaire te chuchote à l'oreille maintenant, tu voudrais entendre quoi ?",
   "Qu'est ce que tu aimerais que ton partenaire fasse le plus au lit ?",
   "Comment tu cherche ton partenaire quand tu as envie ?",
-  "Quelle a été la première pensée coquine quand tu as vu ton partenaire ?",
-  
-  
-  
-  
+  "Quelle a été la première pensée coquine quand tu as vu ton partenaire ?"
 ];
