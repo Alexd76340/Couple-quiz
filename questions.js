@@ -36,7 +36,7 @@ const hotQuestions = [
   "Ta plus grosse honte au lit ?",
   "La chose la plus hard que tu as faite ?",
   "L'anectode la plus drole en fesant l'amour ?",
-  "La partie du corp que tu préfére chez l'autre ?"
+  "La partie du corp que tu préfére chez l'autre ?",
   "Ta position sexuelle préférée ?",
   "L'endroit le plus insolite ou tu as fait l'amour ?",
   "Si ton partenaire te chuchote à l'oreille maintenant, tu voudrais entendre quoi ?",
