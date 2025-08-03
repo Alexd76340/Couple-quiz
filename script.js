@@ -7,53 +7,6 @@ let currentCoupleIndex = 0;
 let currentPhase = 'soft';
 let totalRounds = 2;
 
-// ✅ Questions à utiliser dans le jeu
-const softQuestions = [
-  "Quelle est ta couleur préférée ?",
-  "Quel est ton plat préféré ?",
-  "Quel est ton animal préféré ?",
-  "Quelle est ta saison préférée ?",
-  "Quel est ton film favori ?",
-  "Quel pays rêves-tu de visiter ?",
-  "Quel est ton acteur préféré ?",
-  "Quelle est ton actrice préférée ?",
-  "Quelle est ta série préférée ?",
-  "Quelle est ta plus grande qualitée ?",
-  "Quel est ton plus gros défaut ?",
-  "Quel est ton deuxième prénom ?",
-  "Quel surnom ton partenaire te donne t'il ?",
-  "Quelle partie de ton corps tu aime le plus ?",
-  "Quelle partie du corps tu aime le moins ?",
-  "Quelle est ton plus grand rêve ?",
-  "Ton jeu vidéo préféré ?",
-  "Ton sport préféré ?",
-  "Ton souvenir préféré avec ton copain/copine ?",
-  "Le plus beau cadeau qu'il ou qu'elle t'a fait ?",
-  "Comment imagines-tu ta vie dans 5 ans ?",
-  "Quel est le moment de ta relation que tu aimerais revivre ?",
-  "Ta chanson préférée ?",
-  "La première chose que tu as regardée chez lui/elle ?"
-];
-
-const hotQuestions = [
-  "Quel est ton plus grand fantasme ?",
-  "Quelle est ta zone érogène préférée ?",
-  "Quelle est ta position favorite ?",
-  "Quel est ton endroit préféré pour faire l'amour ?",
-  "Avec quel acteur/actrice tu voudrais coucher ?",
-  "L'endroit le plus insolite où tu as fait l'amour ?",
-  "Ta plus grosse honte au lit ?",
-  "La chose la plus hard que tu as faite ?",
-  "L'anecdote la plus drôle en faisant l'amour ?",
-  "La partie du corps que tu préfères chez l'autre ?",
-  "Ta position sexuelle préférée ?",
-  "L'endroit le plus insolite où tu as fait l'amour ?",
-  "Si ton partenaire te chuchote à l'oreille maintenant, tu voudrais entendre quoi ?",
-  "Qu'est-ce que tu aimerais que ton partenaire fasse le plus au lit ?",
-  "Comment tu cherches ton partenaire quand tu as envie ?",
-  "Quelle a été la première pensée coquine quand tu as vu ton partenaire ?"
-];
-
 // ✅ Fonction manquante : randomiser les questions
 function getRandomQuestions(questionArray, count) {
   const shuffled = [...questionArray].sort(() => 0.5 - Math.random());
@@ -77,8 +30,6 @@ function startGame() {
   const inputs = document.querySelectorAll('#couples-list input');
   couples = [];
   scores = {};
-  
-  // Vérification des couples ajoutés
   inputs.forEach(input => {
     if (input.value.trim()) {
       let name = input.value.trim();
@@ -92,8 +43,6 @@ function startGame() {
     return;
   }
 
-  console.log(couples); // Vérifie les couples ajoutés
-  
   document.getElementById('setup').classList.add('hidden');
   document.getElementById('game').classList.remove('hidden');
   round = 1;
@@ -106,10 +55,6 @@ function startGame() {
 }
 
 function updateDisplay() {
-  // Mise à jour de l'affichage des informations
-  console.log("Question courante: ", currentQuestionSet[currentQuestionIndex]); // Vérifie la question actuelle
-  console.log("Couple courant: ", couples[currentCoupleIndex]); // Vérifie le couple actuel
-
   document.getElementById('round-counter').innerText = "Manche " + round;
   document.getElementById('current-question').innerText = currentQuestionSet[currentQuestionIndex];
   document.getElementById('current-couple').innerText = "Couple : " + couples[currentCoupleIndex];
@@ -199,7 +144,7 @@ function endGame() {
     y: Math.random() * -window.innerHeight,
     r: Math.random() * 6 + 4,
     d: Math.random() * 5 + 2,
-    color: `hsl(${Math.random() * 360}, 70%, 60%)`
+    color: `hsl(${Math.random() * 360}, 70%, 60%)`,
   }));
 
   function drawConfetti() {
@@ -226,44 +171,7 @@ function endGame() {
   setInterval(drawConfetti, 30);
 }
 
-// ✅ Fonction pour redémarrer le jeu
-document.getElementById('restart-button').addEventListener('click', function() {
-  restartGame();
-});
-
+// ✅ Recharge 100 % fiable du jeu
 function restartGame() {
-  // Réinitialiser toutes les variables de jeu
-  couples = [];
-  scores = {};
-  round = 1;
-  currentQuestionSet = [];
-  currentQuestionIndex = 0;
-  currentCoupleIndex = 0;
-  currentPhase = 'soft';
-
-  // Réinitialiser l'affichage des sections
-  document.getElementById('final').classList.add('hidden');
-  document.getElementById('setup').classList.remove('hidden');
-  document.getElementById('game').classList.add('hidden');
-
-  // Réinitialiser les champs des couples dans le formulaire
-  const inputs = document.querySelectorAll('#couples-list input');
-  inputs.forEach(input => {
-    input.value = '';  // Effacer les valeurs des champs
-  });
-
-  // Réinitialiser l'affichage des informations de jeu
-  document.getElementById('round-counter').innerText = "Manche " + round;
-  document.getElementById('current-question').innerText = "";
-  document.getElementById('current-couple').innerText = "";
-  document.getElementById('question-type').innerText = "";
-
-  // Réinitialiser la classe du corps (soft ou hot)
-  document.body.className = 'soft';
-
-  // Supprimer le canvas des confettis s'il existe
-  const confettiCanvas = document.getElementById('confetti-canvas');
-  if (confettiCanvas) {
-    confettiCanvas.remove();
-  }
+  window.location.href = window.location.href;
 }
